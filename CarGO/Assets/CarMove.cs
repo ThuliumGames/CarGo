@@ -11,17 +11,23 @@ public class CarMove : MonoBehaviour {
 	bool onGround;
 	
 	void Update () {
-		Camera.position = transform.position + new Vector3 (0, 1, -10);
+		Camera.position = transform.position + new Vector3 (2, 1, -10);
+		
+		if (Input.GetButton("Jump")) {
+			Camera.GetComponent<Camera>().orthographicSize = Mathf.Lerp (Camera.GetComponent<Camera>().orthographicSize, 20, 5*Time.deltaTime);
+			RB.AddRelativeForce (new Vector2 (10*Speed, 0));
+		} else {
+			Camera.GetComponent<Camera>().orthographicSize = Mathf.Lerp (Camera.GetComponent<Camera>().orthographicSize, 5, 5*Time.deltaTime);
+		}
+		
 		if (onGround) {
-			print ("OnGround");
 			RB.AddRelativeForce (new Vector2 (Input.GetAxis("Horizontal")*Speed, 0));
 		} else {
-			print ("OffGround");
 			RB.AddTorque (Input.GetAxis("Horizontal")*Speed/50);
 		}
 	}
 	
-	void OnTriggerEnter2D(Collider2D collision) {
+	void OnTriggerStay2D(Collider2D collision) {
 		onGround = true;
 	}
 	
