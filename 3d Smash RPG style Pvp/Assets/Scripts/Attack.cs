@@ -25,12 +25,14 @@ public class Attack : MonoBehaviour {
 	void OnTriggerEnter (Collider C) {
 		print (C);
 		if (C.transform == ECol.transform) {
-			Pow = 10;
+			Pow = 7;
 			if (GetComponentInParent<Move>().Anim.GetBool ("Swing2")) {
-				Pow = 15;	
+				Pow = 15;
 			}
 			ECol.GetComponentInChildren<Move>().enabled = false;
-			Invoke ("Reen", 1);
+			ECol.Translate (0, 0.6f, 0);
+			ECol.GetComponent<Rigidbody>().velocity = ((GetComponentInParent<Move>().transform.forward * Pow) + (Vector3.up * (Pow/1.5f)));
+			Invoke ("Reen", 1.4f);
 			GetComponentInChildren<BoxCollider>().enabled = false;
 		}
 	}

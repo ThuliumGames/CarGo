@@ -23,7 +23,7 @@ public class Move : MonoBehaviour {
 		RaycastHit H;
 		if (Physics.Raycast (transform.position, Vector3.down, out H, 1.5f)) {
 			CanJump = true;
-			transform.position = new Vector3 (transform.position.x, H.point.y+1f, transform.position.z);
+			RB.transform.position = new Vector3 (transform.position.x, H.point.y+1f, transform.position.z);
 			RB.velocity = Vel;
 		} else {
 			Anim.Play("Idle");
@@ -31,7 +31,7 @@ public class Move : MonoBehaviour {
 		}
 		if (SSInput.X[Player] == "Pressed" && CanJump) {
 			CanJump = false;
-			transform.Translate (0, 0.6f, 0);
+			RB.transform.Translate (0, 0.6f, 0);
 			RB.velocity = new Vector3 (RB.velocity.x, 7, RB.velocity.z);
 		}
 	}
