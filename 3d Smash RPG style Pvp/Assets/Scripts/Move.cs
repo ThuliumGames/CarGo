@@ -32,7 +32,7 @@ public class Move : MonoBehaviour {
 		if (SSInput.X[Player] == "Pressed" && CanJump) {
 			CanJump = false;
 			RB.transform.Translate (0, 0.6f, 0);
-			RB.velocity = new Vector3 (RB.velocity.x, 7, RB.velocity.z);
+			RB.velocity = new Vector3 (RB.velocity.x, 7, RB.velocity.z); 
 		}
 	}
 }

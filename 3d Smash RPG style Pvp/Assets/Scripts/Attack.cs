@@ -7,6 +7,8 @@ public class Attack : MonoBehaviour {
 	public Transform ECol;
 	
 	float Pow;
+
+    public int CharacterClassType; 
 	
 	void OnEnable () {
 		GetComponentInParent<Move>().Anim.SetBool ("Swing", false);
@@ -14,12 +16,17 @@ public class Attack : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (SSInput.B[GetComponentInParent<Move>().Player] == "Pressed") {
-			GetComponentInParent<Move>().Anim.SetBool ("Swing", true);
-		}
-		if (SSInput.A[GetComponentInParent<Move>().Player] == "Pressed") {
-			GetComponentInParent<Move>().Anim.SetBool ("Swing2", true);
-		}
+
+        if (CharacterClassType == 1) {
+            if (SSInput.B[GetComponentInParent<Move>().Player] == "Pressed")
+            {
+                GetComponentInParent<Move>().Anim.SetBool("Swing", true);
+            }
+            if (SSInput.A[GetComponentInParent<Move>().Player] == "Pressed")
+            {
+                GetComponentInParent<Move>().Anim.SetBool("Swing2", true);
+            }
+        
 	}
 	
 	void OnTriggerEnter (Collider C) {
